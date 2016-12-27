@@ -19,6 +19,20 @@ to
 
 This is intended to be a VS Code port of [ASCII-Decorator for Sublime Text.](https://github.com/viisual/ASCII-Decorator)
 
+## Features
+
+### Font Selector
+
+![Demo font selector](images/demo-font-select.gif)
+
+### Default Font
+
+![Demo default font](images/demo-default-font.gif)
+
+### Font Test
+
+![Demo font test](images/demo-font-test-lorem.gif)
+
 ## Useage
 
 ### Command Palette
@@ -52,9 +66,9 @@ Type:
 
 ## @TODO
 
-- [x] Preview pane
-- [x] Generate from font favorites
 - [x] Generate font test from all available fonts
+- [ ] Generate/select from font favorites
+- [ ] Preview pane during selection
 - [ ] Advanced settings
 
 ## References
