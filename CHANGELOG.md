@@ -3,7 +3,9 @@ All notable changes to the "asciidecorator" extension will be documented in this
 
 ## [Unreleased]
 
-[Unreleased]:
+## 0.0.3
+
+- Added font test generation
 
 ## 0.0.2
 

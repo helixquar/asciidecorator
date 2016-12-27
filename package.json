@@ -2,7 +2,7 @@
     "name": "asciidecorator",
     "displayName": "ASCIIDecorator",
     "description": "Figlet font generator",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "publisher": "helixquar",
     "engines": {
         "vscode": "^1.5.0"
@@ -19,6 +19,8 @@
         "Other"
     ],
     "activationEvents": [
+        "onCommand:asciidecorator.generateFontTestWithLorem",
+        "onCommand:asciidecorator.generateFontTestWithSelected",
         "onCommand:asciidecorator.replaceWithDefaultFont",
         "onCommand:asciidecorator.replaceWithSelectedFont"
     ],
@@ -41,6 +43,16 @@
             }
         },
         "commands": [
+            {
+                "command": "asciidecorator.generateFontTestWithLorem",
+                "title": "ASCII Decorator: Generate Font Test (Lorem Ipsum)",
+                "description": "Generated font test with \"Lorem Ipsum\""
+            },
+            {
+                "command": "asciidecorator.generateFontTestWithSelected",
+                "title": "ASCII Decorator: Generate Font Test (Selected Text)",
+                "description": "Generated font test with selected text"
+            },
             {
                 "command": "asciidecorator.replaceWithDefaultFont",
                 "title": "ASCII Decorator: Default Font",

@@ -29,10 +29,58 @@ export function activate(context: vscode.ExtensionContext) {
 
     context.subscriptions.push(vscode.commands.registerCommand('asciidecorator.replaceWithDefaultFont', replaceSelectionsWithDefaultFont));
     context.subscriptions.push(vscode.commands.registerCommand('asciidecorator.replaceWithSelectedFont', replaceSelectionWithSelectedFont));
+    context.subscriptions.push(vscode.commands.registerCommand('asciidecorator.generateFontTestWithLorem', generateFontTestWithLorem));
+    context.subscriptions.push(vscode.commands.registerCommand('asciidecorator.generateFontTestWithSelected', generateFontTestWithSelected));
 }
 
 // this method is called when your extension is deactivated
 export function deactivate() {
+}
+
+function generateFontTestWithSelected(): void {
+    let e = Window.activeTextEditor;
+    let d = e.document;
+    let sel = e.selections;
+
+    //get first selection only, ignore all others
+    let txt: string = d.getText(new Range(sel[0].start, sel[0].end));
+
+    generateFontTest(txt);
+}
+
+function generateFontTestWithLorem(): void {
+    generateFontTest("Lorem ipsum");
+}
+
+function generateFontTest(text): void {
+    var figlet = require('figlet');
+    var fonts = [];
+
+    figlet.fontsSync().forEach(function (font) {
+        fonts.push(font);
+    }, this);
+
+    var fontTest = [];
+
+    fonts.forEach(function (font) {
+        fontTest.push("Font: " + font);
+        fontTest.push("\n");
+        
+        fontTest.push(
+            figlet.textSync(text, {
+                font: font,
+                horizontalLayout: 'default',
+                verticalLayout: 'default'
+        }));
+        
+        fontTest.push("\n");
+        fontTest.push("\n");
+    });
+
+    let fontTestWindow = Window.createOutputChannel("Font Test");
+
+    fontTestWindow.append(fontTest.join(""));
+    fontTestWindow.show();
 }
 
 function replaceSelectionsWithFont(font): void {
@@ -74,7 +122,7 @@ function replaceSelectionsWithDefaultFont(): void {
 function processSelection(e: TextEditor, d: TextDocument, sel: Selection[], formatCB, argsCB) {
     var replaceRanges: Selection[] = [];
     e.edit(function (edit) {
-        // itterate through the selections
+        // iterate through the selections
         for (var x = 0; x < sel.length; x++) {
             let txt: string = d.getText(new Range(sel[x].start, sel[x].end));
             if (argsCB.length > 0) {
