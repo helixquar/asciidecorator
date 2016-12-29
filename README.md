@@ -47,7 +47,7 @@ Type:
 * `ASCII Decorator: Default Font`
 * `ASCII Decorator: Font Selector`
 * `ASCII Decorator: Generate Font Test (Selected Text)`
-* `ASCII Decorator: ASCII Decorator: Generate Font Test (Lorem Ipsum)`
+* `ASCII Decorator: Generate Font Test (Lorem Ipsum)`
 
 ## Extension Settings
 
@@ -56,19 +56,13 @@ Type:
 
 ## Updates
 
-### 0.0.3
-
-- Added font test generation
-
-### 0.0.1
-
-- Initial release
+See [changelog](CHANGELOG.md).
 
 ## @TODO
 
 - [x] Generate font test from all available fonts
+- [X] Preview pane during selection
 - [ ] Generate/select from font favorites
-- [ ] Preview pane during selection
 - [ ] Advanced settings
 
 ## References
