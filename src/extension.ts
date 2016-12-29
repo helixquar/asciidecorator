@@ -102,11 +102,43 @@ function replaceSelectionWithSelectedFont(): void {
         items.push({ label: font, description: "Use the " + font + " font" });
     }, this);
 
-    Window.showQuickPick(items).then(function (selection) {
+    let fontTestWindow = Window.createOutputChannel("Font Test");
+    let e = Window.activeTextEditor;
+    let d = e.document;
+    let sel = e.selections;
+
+    //font test is shown only for the first selection
+    let txt: string = d.getText(new Range(sel[0].start, sel[0].end));
+
+    let options = <vscode.QuickPickOptions>{
+        placeHolder: 'Select a font',
+        matchOnDescription: true,
+        onDidSelectItem: item => {
+            if(!txt)
+            {
+                return;
+            }
+
+            fontTestWindow.clear();
+            fontTestWindow.append(
+                figlet.textSync(txt, {
+                font: item.label,
+                horizontalLayout: 'default',
+                verticalLayout: 'default'
+            }));
+            fontTestWindow.show(true);
+        }
+    };
+
+    Window.showQuickPick(items, options).then(function (selection) {
         if (!selection) {
+            fontTestWindow.hide();
+            fontTestWindow.dispose();
             return;
         }
         replaceSelectionsWithFont(selection.label);
+        fontTestWindow.hide();
+        fontTestWindow.dispose();
     });
 }
 
