@@ -21,8 +21,7 @@ export function activate(context: vscode.ExtensionContext) {
 
     var settings = new Settings();
 
-    if(!settings.Enabled)
-    {
+    if(!settings.Enabled) {
         console.log("The extension \"asciidecorator\" is disabled.");
         return;
     }
@@ -156,6 +155,10 @@ function processSelection(e: TextEditor, d: TextDocument, sel: Selection[], form
     e.edit(function (edit) {
         // iterate through the selections
         for (var x = 0; x < sel.length; x++) {
+            let prefixStart = new Position(sel[x].start.line, 0);
+            let prefixEnd = sel[x].start;
+            let prefix = d.getText(new Range(prefixStart, prefixEnd));
+
             let txt: string = d.getText(new Range(sel[x].start, sel[x].end));
             if (argsCB.length > 0) {
                 // in the case of figlet the params are test to change and font so this is hard coded
@@ -164,8 +167,10 @@ function processSelection(e: TextEditor, d: TextDocument, sel: Selection[], form
             } else {
                 txt = formatCB(txt);
             }
+            // add the prefix before every line of the selection
+            txt = txt.split("\n").join("\n"+prefix);
 
-            //replace the txt in the current select and work out any range adjustments
+            // replace the txt in the current select and work out any range adjustments
             edit.replace(sel[x], txt);
             let startPos: Position = new Position(sel[x].start.line, sel[x].start.character);
             let endPos: Position = new Position(sel[x].start.line + txt.split(/\r\n|\r|\n/).length - 1, sel[x].start.character + txt.length);
