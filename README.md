@@ -33,7 +33,7 @@ This is intended to be a VS Code port of [ASCII-Decorator for Sublime Text.](htt
 
 ![Demo font test](images/demo-font-test-lorem.gif)
 
-## Useage
+## Usage
 
 ### Command Palette
 
