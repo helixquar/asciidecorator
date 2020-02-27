@@ -93,6 +93,8 @@ function replaceSelectionsWithFont(font): void {
     processSelection(e, d, sel, figlet.textSync, [font]);
 }
 
+interface MyPickItem extends QuickPickItem { }
+
 function replaceSelectionWithSelectedFont(): void {
     var figlet = require('figlet');
     var items: QuickPickItem[] = [];
@@ -112,7 +114,7 @@ function replaceSelectionWithSelectedFont(): void {
     let options = <vscode.QuickPickOptions>{
         placeHolder: 'Select a font',
         matchOnDescription: true,
-        onDidSelectItem: item => {
+        onDidSelectItem: (item: MyPickItem) => {
             if(!txt)
             {
                 return;
