@@ -4,6 +4,7 @@
     "description": "Figlet font generator",
     "version": "0.2.0",
     "publisher": "helixquar",
+    "license": "See license in LICENSE",
     "engines": {
         "vscode": "^1.5.0"
     },
