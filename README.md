@@ -58,13 +58,6 @@ Type:
 
 See [changelog](CHANGELOG.md).
 
-## @TODO
-
-- [x] Generate font test from all available fonts
-- [X] Preview pane during selection
-- [ ] Generate/select from font favorites
-- [ ] Advanced settings
-
 ## References
 
 * Features from Sublime extension: [viisual/asciidecorator](https://github.com/viisual/ASCII-Decorator)
