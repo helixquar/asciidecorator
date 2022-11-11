@@ -2,11 +2,11 @@
     "name": "asciidecorator",
     "displayName": "ASCIIDecorator",
     "description": "Figlet font generator",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "publisher": "helixquar",
     "license": "GPL-3.0-or-later",
     "engines": {
-        "vscode": "^1.5.0"
+        "vscode": "^1.73.0"
     },
     "icon": "images/icon.png",
     "bugs": {
@@ -73,19 +73,27 @@
         ]
     },
     "scripts": {
-        "vscode:prepublish": "tsc -p ./",
-        "compile": "tsc -watch -p ./",
-        "postinstall": "node ./node_modules/vscode/bin/install",
-        "test": "node ./node_modules/vscode/bin/test"
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "pretest": "npm run compile && npm run lint",
+        "lint": "eslint src --ext ts",
+        "test": "node ./out/test/runTest.js"
     },
     "dependencies": {
-        "figlet": "^1.2.0"
+        "figlet": "^1.5.2"
     },
     "devDependencies": {
-        "typescript": "^2.0.3",
-        "vscode": "^1.0.0",
-        "mocha": "^2.3.3",
-        "@types/node": "^6.0.40",
-        "@types/mocha": "^2.2.32"
+        "@types/vscode": "^1.73.0",
+        "@types/glob": "^8.0.0",
+        "@types/mocha": "^10.0.0",
+        "@types/node": "16.x",
+        "@typescript-eslint/eslint-plugin": "^5.42.0",
+        "@typescript-eslint/parser": "^5.42.0",
+        "eslint": "^8.26.0",
+        "glob": "^8.0.3",
+        "mocha": "^10.1.0",
+        "typescript": "^4.8.4",
+        "@vscode/test-electron": "^2.2.0"
     }
 }
