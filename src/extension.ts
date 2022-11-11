@@ -152,7 +152,7 @@ function replaceSelectionsWithDefaultFont(): void {
 
 // This function takes a callback function for the text formatting 'formatCB', 
 // if there are any args pass an array as 'argsCB'
-function processSelection(e: TextEditor, d: TextDocument, sel: Selection[], formatCB, argsCB) {
+function processSelection(e: TextEditor, d: TextDocument, sel: readonly Selection[], formatCB, argsCB) {
     var replaceRanges: Selection[] = [];
     e.edit(function (edit) {
         // iterate through the selections
